@@ -13,9 +13,9 @@ import utils
 
 FLAGS = tf.flags.FLAGS
 
-tf.flags.DEFINE_string('model', '', 'model path (.pb)')
-tf.flags.DEFINE_string('input', 'input_sample.jpg', 'input image path (.jpg)')
-tf.flags.DEFINE_string('output', 'output_sample.jpg', 'output image path (.jpg)')
+tf.flags.DEFINE_string('model', 'pretrained/scannerA2scannerH.pb', 'model path (.pb)')
+tf.flags.DEFINE_string('input', 'samples/mitosis/A03_01D.png', 'input image path (.jpg)')
+tf.flags.DEFINE_string('output', 'samples/mitosis/sn/A03_01D_sn1.png', 'output image path (.jpg)')
 tf.flags.DEFINE_integer('image_size', '256', 'image size, default: 256')
 
 def inference():
