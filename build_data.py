@@ -10,14 +10,14 @@ except ImportError:
 
 FLAGS = tf.flags.FLAGS
 
-tf.flags.DEFINE_string('X_input_dir', 'data/mitosis@20x/mitosis_scannerA',
-                       'X input directory, default: data/mitosis@20x/mitosis_scannerA')
-tf.flags.DEFINE_string('Y_input_dir', 'data/mitosis@20x/mitosis_scannerH',
-                       'Y input directory, default: data/mitosis@20x/mitosis_scannerH')
-tf.flags.DEFINE_string('X_output_file', 'data/tfrecords/mitosis_scannerA.tfrecords',
-                       'X output tfrecords file, default: data/tfrecords/mitosis_scannerA.tfrecords')
-tf.flags.DEFINE_string('Y_output_file', 'data/tfrecords/mitosis_scannerH.tfrecords',
-                       'Y output tfrecords file, default: data/tfrecords/mitosis_scannerH.tfrecords')
+tf.flags.DEFINE_string('X_input_dir', 'data/mitosis@20x/HSD_patches/scannerA',
+                       'X input directory, default: data/mitosis@20x/HSD_patches/scannerA')
+tf.flags.DEFINE_string('Y_input_dir', 'data/mitosis@20x/HSD_patches/scannerH',
+                       'Y input directory, default: data/mitosis@20x/HSD_patches/scannerH')
+tf.flags.DEFINE_string('X_output_file', 'data/tfrecords/HSD/scannerA.tfrecords',
+                       'X output tfrecords file, default: data/tfrecords/HSD/scannerA.tfrecords')
+tf.flags.DEFINE_string('Y_output_file', 'data/tfrecords/HSD/scannerH.tfrecords',
+                       'Y output tfrecords file, default: data/tfrecords/HSD/scannerH.tfrecords')
 
 
 def data_reader(input_dir, shuffle=True):
