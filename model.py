@@ -75,13 +75,13 @@ class CycleGAN:
         # X -> Y
         fake_y = self.G(x)
         G_gan_loss = self.generator_loss(self.D_Y, fake_y, use_lsgan=self.use_lsgan)
-        G_loss = G_gan_loss + cycle_loss
+        G_loss = G_gan_loss + 10 * cycle_loss
         D_Y_loss = self.discriminator_loss(self.D_Y, y, self.fake_y, use_lsgan=self.use_lsgan)
 
         # Y -> X
         fake_x = self.F(y)
         F_gan_loss = self.generator_loss(self.D_X, fake_x, use_lsgan=self.use_lsgan)
-        F_loss = F_gan_loss + cycle_loss
+        F_loss = F_gan_loss + 10 * cycle_loss
         D_X_loss = self.discriminator_loss(self.D_X, x, self.fake_x, use_lsgan=self.use_lsgan)
 
         # summary

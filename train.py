@@ -6,6 +6,8 @@ import os
 import logging
 from utils import ImagePool
 
+media_dir = "/media/data/tarek"
+
 FLAGS = tf.flags.FLAGS
 
 tf.flags.DEFINE_integer('batch_size', 1, 'batch size, default: 1')
@@ -27,20 +29,22 @@ tf.flags.DEFINE_float('pool_size', 50,
 tf.flags.DEFINE_integer('ngf', 64,
                         'number of gen filters in first conv layer, default: 64')
 
-tf.flags.DEFINE_string('X', 'data/tfrecords/HSD/scannerA.tfrecords',
-                       'X tfrecords file for training, default: data/tfrecords/HSD/scannerA.tfrecords')
-tf.flags.DEFINE_string('Y', 'data/tfrecords/HSD/scannerH.tfrecords',
-                       'Y tfrecords file for training, default: data/tfrecords/HSD/scannerH.tfrecords')
+tf.flags.DEFINE_string('X', '/media/data/tarek/camelyon16/center_2.tfrecords',
+                       'X tfrecords file for training, default: /media/data/tarek/camelyon16/center_2.tfrecords')
+
+tf.flags.DEFINE_string('Y', '/media/data/tarek/camelyon16/center_3.tfrecords',
+                       'Y tfrecords file for training, default: /media/data/tarek/camelyon16/center_3.tfrecords')
+
 tf.flags.DEFINE_string('load_model', None,
                        'folder of saved model that you wish to continue training (e.g. 20170602-1936), default: None')
 
 
 def train():
     if FLAGS.load_model is not None:
-        checkpoints_dir = "checkpoints/" + FLAGS.load_model.lstrip("checkpoints/")
+        checkpoints_dir = media_dir + "/checkpoints/" + FLAGS.load_model.lstrip("checkpoints/")
     else:
         current_time = datetime.now().strftime("%Y%m%d-%H%M")
-        checkpoints_dir = "checkpoints/HSD{}".format(current_time)
+        checkpoints_dir = media_dir + "/checkpoints/camelyon16_center2_to_center3{}".format(current_time)
         try:
             os.makedirs(checkpoints_dir)
         except os.error:

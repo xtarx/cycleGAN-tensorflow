@@ -2,6 +2,8 @@ import tensorflow as tf
 import random
 import os
 
+media_dir = "/media/data/tarek"
+
 try:
     from os import scandir
 except ImportError:
@@ -10,14 +12,14 @@ except ImportError:
 
 FLAGS = tf.flags.FLAGS
 
-tf.flags.DEFINE_string('X_input_dir', 'data/mitosis@20x/HSD_patches/scannerA',
-                       'X input directory, default: data/mitosis@20x/HSD_patches/scannerA')
-tf.flags.DEFINE_string('Y_input_dir', 'data/mitosis@20x/HSD_patches/scannerH',
-                       'Y input directory, default: data/mitosis@20x/HSD_patches/scannerH')
-tf.flags.DEFINE_string('X_output_file', 'data/tfrecords/HSD/scannerA.tfrecords',
-                       'X output tfrecords file, default: data/tfrecords/HSD/scannerA.tfrecords')
-tf.flags.DEFINE_string('Y_output_file', 'data/tfrecords/HSD/scannerH.tfrecords',
-                       'Y output tfrecords file, default: data/tfrecords/HSD/scannerH.tfrecords')
+tf.flags.DEFINE_string('X_input_dir', media_dir + "/camelyon17/center1",
+                       'X input directory, default: /media/data/tarek/camelyon17/center1')
+tf.flags.DEFINE_string('Y_input_dir', media_dir + "/camelyon17/center4",
+                       'Y input directory, default:  media_dir+ "/camelyon17/center4"')
+tf.flags.DEFINE_string('X_output_file', media_dir + "/camelyon17/center1.tfrecords",
+                       'X output tfrecords file, default: /media/data/tarek/camelyon17/center1.tfrecords')
+tf.flags.DEFINE_string('Y_output_file', media_dir + "/camelyon17/center4.tfrecords",
+                       'Y output tfrecords file, default: /media/data/tarek/camelyon17/center4.tfrecords')
 
 
 def data_reader(input_dir, shuffle=True):
