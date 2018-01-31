@@ -42,7 +42,7 @@ tf.flags.DEFINE_string('norm', 'instance',
 # tf.flags.DEFINE_string('checkpoint_dir', '/media/data/tarek/checkpoints/split20171128-1036',
 #                        'checkpoints directory path')
 
-tf.flags.DEFINE_string('checkpoint_dir', '/media/data/tarek/checkpoints/camelyon16_center2_to_center320180109-2324',
+tf.flags.DEFINE_string('checkpoint_dir', '/media/data/tarek/checkpoints/',
                        'checkpoints directory path')
 
 

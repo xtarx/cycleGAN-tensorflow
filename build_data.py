@@ -12,14 +12,17 @@ except ImportError:
 
 FLAGS = tf.flags.FLAGS
 
-tf.flags.DEFINE_string('X_input_dir', media_dir + "/camelyon17/center1",
-                       'X input directory, default: /media/data/tarek/camelyon17/center1')
-tf.flags.DEFINE_string('Y_input_dir', media_dir + "/camelyon17/center4",
-                       'Y input directory, default:  media_dir+ "/camelyon17/center4"')
-tf.flags.DEFINE_string('X_output_file', media_dir + "/camelyon17/center1.tfrecords",
-                       'X output tfrecords file, default: /media/data/tarek/camelyon17/center1.tfrecords')
-tf.flags.DEFINE_string('Y_output_file', media_dir + "/camelyon17/center4.tfrecords",
-                       'Y output tfrecords file, default: /media/data/tarek/camelyon17/center4.tfrecords')
+tf.flags.DEFINE_string('X_input_dir', media_dir + "/mitosis@20x/24jan2018/5fold/A/",
+                       'X input directory, default: media_dir+"/mitosis@20x/24jan2018/5fold/A/"')
+
+tf.flags.DEFINE_string('Y_input_dir', media_dir + "/mitosis@20x/24jan2018/5fold/H/",
+                       'Y input directory, default:  media_dir+"/mitosis@20x/24jan2018/5fold/H/"')
+
+tf.flags.DEFINE_string('X_output_file', media_dir + "/mitosis@20x/24jan2018/5fold/centerA_fold2_as_test.tfrecords",
+                       'X output tfrecords file, default: /media/data/tarek/mitosis@20x/24jan2018/5fold/centerA_fold2_as_test.tfrecords')
+
+tf.flags.DEFINE_string('Y_output_file', media_dir + "/mitosis@20x/24jan2018/5fold/centerH_fold2_as_test.tfrecords",
+                       'Y output tfrecords file, default: /media/data/tarek/mitosis@20x/24jan2018/5fold/centerH_fold2_as_test.tfrecords')
 
 
 def data_reader(input_dir, shuffle=True):
@@ -30,11 +33,18 @@ def data_reader(input_dir, shuffle=True):
       file_paths: list of strings
     """
     file_paths = []
+    print(input_dir)
 
-    for img_file in scandir(input_dir):
-        if img_file.name.endswith('.png') and img_file.is_file():
-            file_paths.append(img_file.path)
+    # train with 2,3,4,5 test with 1
+    # input_dirs = [input_dir + "2", input_dir + "3", input_dir + "4", input_dir + "5"]
+    input_dirs = [input_dir + "1", input_dir + "3", input_dir + "4", input_dir + "5"]
+    for current_dir in input_dirs:
+        print("current_dir is ", current_dir)
+        for img_file in scandir(current_dir):
+            if img_file.name.endswith('.png') and img_file.is_file():
+                file_paths.append(img_file.path)
 
+    print("# of files ", len(file_paths))
     if shuffle:
         # Shuffle the ordering of all image files in order to guarantee
         # random ordering of the images with respect to label in the
